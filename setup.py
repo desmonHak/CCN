@@ -17,7 +17,8 @@ src_soruces = [join(src_dir, file) for file in listdir(src_dir) if file.endswith
 print(src_soruces)
 
 object_dir = "bin"
-object_bin = [join(object_dir, file) for file in listdir(object_dir) if file.endswith(".o")]
+object_bin = [f"{join('bin','time_code.o')}"]
+#[join(object_dir, file) for file in listdir(object_dir) if file.endswith(".o")]
 print(object_bin)
 
 def main():

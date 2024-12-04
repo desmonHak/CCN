@@ -80,7 +80,12 @@ static struct PyModuleDef CCN_lib_native = {
  * 
  */
 PyMODINIT_FUNC PyInit_CCN_lib(void) {
-    _ACTIVATE_COLORS_ANSI_WIN__();
+    // funciones constructoras:
+    _ACTIVATE_COLORS_ANSI_WIN__(); // habilita el ansi
+    __constructor_debug_c__(); // configura el manejador de excepciones si se indico
+    __constructor_time_contador__(); // inicia el contador de tiempo
+
+
     debug_print_ccn("init module");
 
     /* Assign module value */
@@ -88,6 +93,9 @@ PyMODINIT_FUNC PyInit_CCN_lib(void) {
     if (module == NULL) return NULL;
 
 
+    // funciones destructoras:
+    __destructor_debug_c__();
+    __destructor_time_contador__();
     return module; // retornar el modulo creado.
 }
 #endif
