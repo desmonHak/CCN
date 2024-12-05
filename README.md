@@ -29,4 +29,7 @@ CCN/
 └─ README.md           (Información sobre el proyecto)
 ```
 
+- [How build the project](doc/build.md)
+- [How to use the project](doc/use.md)
+
 ---

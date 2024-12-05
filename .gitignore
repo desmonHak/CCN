@@ -7,3 +7,4 @@ dist
 *.obj
 *.o
 *.lib
+build/*

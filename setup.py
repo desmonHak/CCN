@@ -28,12 +28,28 @@ def main():
         description  = "Proyect CCN",
         author       = "desmonHak",
         author_email = "",
+        packages=["."],  # Incluye el directorio actual
+        package_data={
+            "": [
+                "include/*",
+                "src/*",
+                "lib/**/*",
+                "tools/*",
+                "lib/DebugLibC/colors-C-C-plus-plus/*"
+            ],  # Incluir archivos y directorios adicionales
+        },
+        data_files=[
+            ("bin", ["bin/time_code.o"]),  # Archivos adicionales en carpetas específicas
+            #("doc", ["doc/*"]),   # Documentación
+        ],
+        
         ext_modules  = [
             Extension(
                 "CCN_lib",
                 sources=[] + src_soruces ,
                 include_dirs=[
                     "include",  # Directorio que contiene los archivos de encabezados
+                    "lib/DebugLibC/colors-C-C-plus-plus",  # Agrega todos los directorios necesarios
                 ],
                 define_macros=[("DEBUG_ENABLE_CCN", None)],  # Definir la macro -DDEBUG_ENABLE_CCN
                 extra_link_args = [] + object_bin,
@@ -43,7 +59,8 @@ def main():
             'Natural Language :: Spanish',
             'Programming Language :: Python :: 3 :: Only',
             'Programming Language :: Python :: Implementation :: CPython',
-        ]
+        ],
+        include_package_data=True,  # Asegura que los archivos declarados se incluyan
     )
 
 if __name__ == "__main__":

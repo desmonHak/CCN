@@ -23,8 +23,8 @@ build_python:
 	python setup.py install
 
 clear_python:
-	$(CLEAR_DIR) build
+	$(CLEAR_DIR) build dist
 
 clear:
 	
-	$(CLEAR_COMMAND) $(DIR_BIN)\*.o
+	$(CLEAR_COMMAND) $(DIR_BIN)\*.o *.pyd
