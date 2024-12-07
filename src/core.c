@@ -3,7 +3,6 @@
 
 #include "../include/core.h"
 
-
 /*
  * No usamos simplemente un const char* normal para la cadena de documentación 
  * porque CPython se puede compilar para que no incluya cadenas de documentación. 
@@ -34,6 +33,10 @@ static PyObject *method_SetProcessAffinityMask(PyObject *self, PyObject *args) {
         return NULL;
     }
 
+    #if defined(_WIN64) ||  defined(_WIN32)
+    BOOL status = SetProcessAffinityMask(-1, mask_affinity);
+    debug_print_ccn("[%d] status = %x", GetProcessId(-1), status);
+    #endif
 
     return PyLong_FromLong(mask_affinity);
 }
@@ -42,7 +45,7 @@ static PyObject *method_SetProcessAffinityMask(PyObject *self, PyObject *args) {
  */
 static PyMethodDef CCN_lib_native_methods[] = {
     {
-        "CCN", 
+        "SetProcessAffinityMask", 
         (PyCFunction)method_SetProcessAffinityMask, 
         METH_VARARGS, 
         CCN_doc

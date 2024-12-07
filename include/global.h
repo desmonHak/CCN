@@ -5,6 +5,10 @@
 #include <stdarg.h>
 #include <stdio.h>
 
+#if defined(_WIN64) ||  defined(_WIN32)
+#include <windows.h>
+#endif
+
 #ifdef _MSC_VER
 // Alias para las funciones MinGW
 int __mingw_vsscanf(const char* str, const char* format, va_list ap)
